@@ -63,8 +63,10 @@ app.get('/signup', function(req, res) {
         res.render('signup', { message: req.flash('signupMessage') });
     });
 app.get('/profile', isLoggedIn, function(req, res) {
+        var photopath = 'http://graph.facebook.com/' + req.user.facebook.id + '/picture?type=large';
         res.render('profile', {
-            user : req.user  // get the user out of session and pass to template
+            user : req.user,
+            ppath : photopath  // get the user out of session and pass to template
         });
     });
  app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
